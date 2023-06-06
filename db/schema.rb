@@ -18,16 +18,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_070956) do
   create_table "reviews", force: :cascade do |t|
     t.integer "star_rating"
     t.string "comment"
-    t.integer "users_id"
-    t.integer "products_id"
-    t.index ["products_id"], name: "index_reviews_on_products_id"
-    t.index ["users_id"], name: "index_reviews_on_users_id"
+    t.integer "user_id"
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_reviews_on_product_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
   end
 
-  add_foreign_key "reviews", "products", column: "products_id"
-  add_foreign_key "reviews", "users", column: "users_id"
+  add_foreign_key "reviews", "products"
+  add_foreign_key "reviews", "users"
 end
